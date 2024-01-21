@@ -2,8 +2,6 @@
 #pragma comment(lib, "winmm.lib")
 #include<Windows.h>
 #include<string>
-#include <chrono>
-#include <thread>
 #include "player_info.h"
 #include "jaccard.h"
 #include <msclr/marshal_cppstd.h>
@@ -211,6 +209,8 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->read_note = (gcnew System::Windows::Forms::Panel());
 			this->read_light = (gcnew System::Windows::Forms::Panel());
 			this->results = (gcnew System::Windows::Forms::Panel());
+			this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox5 = (gcnew System::Windows::Forms::PictureBox());
 			this->generate = (gcnew System::Windows::Forms::Label());
 			this->result_text = (gcnew System::Windows::Forms::Label());
 			this->label10 = (gcnew System::Windows::Forms::Label());
@@ -278,8 +278,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->info = (gcnew System::Windows::Forms::Label());
 			this->exit_image = (gcnew System::Windows::Forms::PictureBox());
 			this->start_game = (gcnew System::Windows::Forms::Label());
-			this->pictureBox5 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
 			this->startpage->SuspendLayout();
 			this->loading_page->SuspendLayout();
 			this->player_intro_page->SuspendLayout();
@@ -289,6 +287,8 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->read_note->SuspendLayout();
 			this->read_light->SuspendLayout();
 			this->results->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox5))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->BeginInit();
 			this->leave->SuspendLayout();
 			this->new_world->SuspendLayout();
@@ -308,13 +308,13 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->info_page->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->mrrobot_ascii))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->exit_image))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox5))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// startpage
 			// 
-			this->startpage->BackColor = System::Drawing::Color::Black;
+			this->startpage->AutoScroll = true;
+			this->startpage->AutoSize = true;
+			this->startpage->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->startpage->Controls->Add(this->loading_page);
 			this->startpage->Controls->Add(this->info_page);
 			this->startpage->Controls->Add(this->info);
@@ -328,7 +328,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->startpage->Location = System::Drawing::Point(0, 0);
 			this->startpage->Margin = System::Windows::Forms::Padding(10, 7, 10, 7);
 			this->startpage->Name = L"startpage";
-			this->startpage->Size = System::Drawing::Size(1523, 1111);
+			this->startpage->Size = System::Drawing::Size(1484, 1061);
 			this->startpage->TabIndex = 0;
 			// 
 			// loading_page
@@ -338,11 +338,12 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->loading_page->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->loading_page->Location = System::Drawing::Point(0, 0);
 			this->loading_page->Name = L"loading_page";
-			this->loading_page->Size = System::Drawing::Size(1523, 1111);
+			this->loading_page->Size = System::Drawing::Size(1484, 1061);
 			this->loading_page->TabIndex = 4;
 			// 
 			// player_intro_page
 			// 
+			this->player_intro_page->AutoScroll = true;
 			this->player_intro_page->Controls->Add(this->barrel);
 			this->player_intro_page->Controls->Add(this->pictureBox1);
 			this->player_intro_page->Controls->Add(this->no);
@@ -353,12 +354,13 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->player_intro_page->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->player_intro_page->Location = System::Drawing::Point(0, 0);
 			this->player_intro_page->Name = L"player_intro_page";
-			this->player_intro_page->Size = System::Drawing::Size(1523, 1111);
+			this->player_intro_page->Size = System::Drawing::Size(1484, 1061);
 			this->player_intro_page->TabIndex = 1;
 			this->player_intro_page->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::player_intro_page_Paint);
 			// 
 			// barrel
 			// 
+			this->barrel->AutoScroll = true;
 			this->barrel->Controls->Add(this->barrel_move);
 			this->barrel->Controls->Add(this->barrel_light);
 			this->barrel->Controls->Add(this->invalid);
@@ -370,12 +372,13 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->barrel->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->barrel->Location = System::Drawing::Point(0, 0);
 			this->barrel->Name = L"barrel";
-			this->barrel->Size = System::Drawing::Size(1523, 1111);
+			this->barrel->Size = System::Drawing::Size(1484, 1061);
 			this->barrel->TabIndex = 6;
 			this->barrel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::barrel_Paint);
 			// 
 			// barrel_move
 			// 
+			this->barrel_move->AutoScroll = true;
 			this->barrel_move->Controls->Add(this->enter_hallway);
 			this->barrel_move->Controls->Add(this->shout_hallway);
 			this->barrel_move->Controls->Add(this->enter_2);
@@ -386,11 +389,12 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->barrel_move->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->barrel_move->Location = System::Drawing::Point(0, 0);
 			this->barrel_move->Name = L"barrel_move";
-			this->barrel_move->Size = System::Drawing::Size(1523, 1111);
+			this->barrel_move->Size = System::Drawing::Size(1523, 1044);
 			this->barrel_move->TabIndex = 18;
 			// 
 			// enter_hallway
 			// 
+			this->enter_hallway->AutoScroll = true;
 			this->enter_hallway->Controls->Add(this->read_note);
 			this->enter_hallway->Controls->Add(this->label6);
 			this->enter_hallway->Controls->Add(this->enter_4);
@@ -400,11 +404,12 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->enter_hallway->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->enter_hallway->Location = System::Drawing::Point(0, 0);
 			this->enter_hallway->Name = L"enter_hallway";
-			this->enter_hallway->Size = System::Drawing::Size(1523, 1111);
+			this->enter_hallway->Size = System::Drawing::Size(1523, 1044);
 			this->enter_hallway->TabIndex = 28;
 			// 
 			// read_note
 			// 
+			this->read_note->AutoScroll = true;
 			this->read_note->Controls->Add(this->read_light);
 			this->read_note->Controls->Add(this->leave);
 			this->read_note->Controls->Add(this->label7);
@@ -415,12 +420,13 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->read_note->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->read_note->Location = System::Drawing::Point(0, 0);
 			this->read_note->Name = L"read_note";
-			this->read_note->Size = System::Drawing::Size(1523, 1111);
+			this->read_note->Size = System::Drawing::Size(1523, 1044);
 			this->read_note->TabIndex = 33;
 			this->read_note->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::read_note_Paint);
 			// 
 			// read_light
 			// 
+			this->read_light->AutoScroll = true;
 			this->read_light->Controls->Add(this->results);
 			this->read_light->Controls->Add(this->note_input);
 			this->read_light->Controls->Add(this->label9);
@@ -430,21 +436,44 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->read_light->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->read_light->Location = System::Drawing::Point(0, 0);
 			this->read_light->Name = L"read_light";
-			this->read_light->Size = System::Drawing::Size(1523, 1111);
+			this->read_light->Size = System::Drawing::Size(1523, 1044);
 			this->read_light->TabIndex = 47;
 			// 
 			// results
 			// 
+			this->results->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->results->AutoScroll = true;
 			this->results->Controls->Add(this->pictureBox6);
 			this->results->Controls->Add(this->pictureBox5);
 			this->results->Controls->Add(this->generate);
 			this->results->Controls->Add(this->result_text);
 			this->results->Controls->Add(this->label10);
-			this->results->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->results->Location = System::Drawing::Point(0, 0);
 			this->results->Name = L"results";
-			this->results->Size = System::Drawing::Size(1523, 1111);
+			this->results->Size = System::Drawing::Size(1514, 1044);
 			this->results->TabIndex = 52;
+			// 
+			// pictureBox6
+			// 
+			this->pictureBox6->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox6.BackgroundImage")));
+			this->pictureBox6->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->pictureBox6->Location = System::Drawing::Point(0, 635);
+			this->pictureBox6->Name = L"pictureBox6";
+			this->pictureBox6->Size = System::Drawing::Size(491, 323);
+			this->pictureBox6->TabIndex = 4;
+			this->pictureBox6->TabStop = false;
+			// 
+			// pictureBox5
+			// 
+			this->pictureBox5->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.BackgroundImage")));
+			this->pictureBox5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->pictureBox5->Location = System::Drawing::Point(934, 635);
+			this->pictureBox5->Name = L"pictureBox5";
+			this->pictureBox5->Size = System::Drawing::Size(438, 323);
+			this->pictureBox5->TabIndex = 3;
+			this->pictureBox5->TabStop = false;
 			// 
 			// generate
 			// 
@@ -467,7 +496,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 				static_cast<System::Int32>(static_cast<System::Byte>(192)));
 			this->result_text->Location = System::Drawing::Point(28, 153);
 			this->result_text->Name = L"result_text";
-			this->result_text->Size = System::Drawing::Size(1470, 454);
+			this->result_text->Size = System::Drawing::Size(1344, 466);
 			this->result_text->TabIndex = 1;
 			// 
 			// label10
@@ -489,7 +518,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 				static_cast<System::Byte>(0)));
 			this->note_input->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->note_input->Location = System::Drawing::Point(341, 757);
+			this->note_input->Location = System::Drawing::Point(341, 685);
 			this->note_input->Name = L"note_input";
 			this->note_input->Size = System::Drawing::Size(716, 35);
 			this->note_input->TabIndex = 51;
@@ -497,7 +526,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(282, 757);
+			this->label9->Location = System::Drawing::Point(283, 699);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(47, 29);
 			this->label9->TabIndex = 50;
@@ -511,7 +540,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 				static_cast<System::Byte>(0)));
 			this->enter_7->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->enter_7->Location = System::Drawing::Point(977, 929);
+			this->enter_7->Location = System::Drawing::Point(976, 883);
 			this->enter_7->Name = L"enter_7";
 			this->enter_7->Size = System::Drawing::Size(115, 35);
 			this->enter_7->TabIndex = 49;
@@ -522,9 +551,9 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			// 
 			this->pictureBox4->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.BackgroundImage")));
 			this->pictureBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->pictureBox4->Location = System::Drawing::Point(0, 44);
+			this->pictureBox4->Location = System::Drawing::Point(154, 31);
 			this->pictureBox4->Name = L"pictureBox4";
-			this->pictureBox4->Size = System::Drawing::Size(1520, 604);
+			this->pictureBox4->Size = System::Drawing::Size(1139, 513);
 			this->pictureBox4->TabIndex = 48;
 			this->pictureBox4->TabStop = false;
 			// 
@@ -534,7 +563,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 				static_cast<System::Byte>(0)));
 			this->read_light_text->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->read_light_text->Location = System::Drawing::Point(335, 652);
+			this->read_light_text->Location = System::Drawing::Point(335, 581);
 			this->read_light_text->Name = L"read_light_text";
 			this->read_light_text->Size = System::Drawing::Size(1073, 119);
 			this->read_light_text->TabIndex = 47;
@@ -542,6 +571,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			// 
 			// leave
 			// 
+			this->leave->AutoScroll = true;
 			this->leave->Controls->Add(this->new_world);
 			this->leave->Controls->Add(this->label8);
 			this->leave->Controls->Add(this->enter_6);
@@ -551,19 +581,20 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->leave->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->leave->Location = System::Drawing::Point(0, 0);
 			this->leave->Name = L"leave";
-			this->leave->Size = System::Drawing::Size(1523, 1111);
+			this->leave->Size = System::Drawing::Size(1523, 1044);
 			this->leave->TabIndex = 38;
 			this->leave->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel1_Paint);
 			// 
 			// new_world
 			// 
+			this->new_world->AutoScroll = true;
 			this->new_world->Controls->Add(this->result);
 			this->new_world->Controls->Add(this->new_world_image);
 			this->new_world->Controls->Add(this->new_text);
 			this->new_world->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->new_world->Location = System::Drawing::Point(0, 0);
 			this->new_world->Name = L"new_world";
-			this->new_world->Size = System::Drawing::Size(1523, 1111);
+			this->new_world->Size = System::Drawing::Size(1523, 1044);
 			this->new_world->TabIndex = 43;
 			// 
 			// result
@@ -778,6 +809,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			// 
 			// shout_hallway
 			// 
+			this->shout_hallway->AutoScroll = true;
 			this->shout_hallway->Controls->Add(this->label5);
 			this->shout_hallway->Controls->Add(this->enter_3);
 			this->shout_hallway->Controls->Add(this->shout_hallway_input);
@@ -786,7 +818,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->shout_hallway->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->shout_hallway->Location = System::Drawing::Point(0, 0);
 			this->shout_hallway->Name = L"shout_hallway";
-			this->shout_hallway->Size = System::Drawing::Size(1523, 1111);
+			this->shout_hallway->Size = System::Drawing::Size(1523, 1044);
 			this->shout_hallway->TabIndex = 23;
 			// 
 			// label5
@@ -908,13 +940,14 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			// 
 			// barrel_light
 			// 
+			this->barrel_light->AutoScroll = true;
 			this->barrel_light->Controls->Add(this->retry);
 			this->barrel_light->Controls->Add(this->explosion_art);
 			this->barrel_light->Controls->Add(this->explosion_text);
 			this->barrel_light->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->barrel_light->Location = System::Drawing::Point(0, 0);
 			this->barrel_light->Name = L"barrel_light";
-			this->barrel_light->Size = System::Drawing::Size(1523, 1111);
+			this->barrel_light->Size = System::Drawing::Size(1523, 1044);
 			this->barrel_light->TabIndex = 13;
 			// 
 			// retry
@@ -958,13 +991,14 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			// 
 			// invalid
 			// 
+			this->invalid->AutoScroll = true;
 			this->invalid->Controls->Add(this->label1);
 			this->invalid->Controls->Add(this->pictureBox3);
 			this->invalid->Controls->Add(this->invalid_text);
 			this->invalid->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->invalid->Location = System::Drawing::Point(0, 0);
 			this->invalid->Name = L"invalid";
-			this->invalid->Size = System::Drawing::Size(1523, 1111);
+			this->invalid->Size = System::Drawing::Size(1523, 1044);
 			this->invalid->TabIndex = 18;
 			// 
 			// label1
@@ -1002,7 +1036,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->invalid_text->Name = L"invalid_text";
 			this->invalid_text->Size = System::Drawing::Size(1073, 199);
 			this->invalid_text->TabIndex = 18;
-			this->invalid_text->Text = L"you can't do that try something else.";
+			this->invalid_text->Text = L"you can\'t do that try something else.";
 			// 
 			// enter_barrel
 			// 
@@ -1071,7 +1105,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->pictureBox1->Location = System::Drawing::Point(3, 27);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(1520, 605);
+			this->pictureBox1->Size = System::Drawing::Size(1200, 405);
 			this->pictureBox1->TabIndex = 5;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -1159,7 +1193,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->info_page->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->info_page->Location = System::Drawing::Point(0, 0);
 			this->info_page->Name = L"info_page";
-			this->info_page->Size = System::Drawing::Size(1523, 1111);
+			this->info_page->Size = System::Drawing::Size(1484, 1061);
 			this->info_page->TabIndex = 3;
 			// 
 			// back_button
@@ -1210,7 +1244,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->info->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->info->Font = (gcnew System::Drawing::Font(L"Minisystem", 27.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->info->Location = System::Drawing::Point(699, 923);
+			this->info->Location = System::Drawing::Point(699, 600);
 			this->info->Name = L"info";
 			this->info->Size = System::Drawing::Size(123, 44);
 			this->info->TabIndex = 2;
@@ -1221,9 +1255,9 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			// 
 			this->exit_image->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"exit_image.BackgroundImage")));
 			this->exit_image->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->exit_image->Location = System::Drawing::Point(457, 27);
+			this->exit_image->Location = System::Drawing::Point(550, 30);
 			this->exit_image->Name = L"exit_image";
-			this->exit_image->Size = System::Drawing::Size(625, 779);
+			this->exit_image->Size = System::Drawing::Size(400, 400);
 			this->exit_image->TabIndex = 1;
 			this->exit_image->TabStop = false;
 			// 
@@ -1233,39 +1267,20 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->start_game->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->start_game->Font = (gcnew System::Drawing::Font(L"Minisystem", 27.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->start_game->Location = System::Drawing::Point(689, 855);
+			this->start_game->Location = System::Drawing::Point(689, 500);
 			this->start_game->Name = L"start_game";
 			this->start_game->Size = System::Drawing::Size(149, 44);
 			this->start_game->TabIndex = 0;
 			this->start_game->Text = L"start";
 			this->start_game->Click += gcnew System::EventHandler(this, &MyForm::start_game_Click);
 			// 
-			// pictureBox5
-			// 
-			this->pictureBox5->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.BackgroundImage")));
-			this->pictureBox5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->pictureBox5->Location = System::Drawing::Point(934, 635);
-			this->pictureBox5->Name = L"pictureBox5";
-			this->pictureBox5->Size = System::Drawing::Size(623, 521);
-			this->pictureBox5->TabIndex = 3;
-			this->pictureBox5->TabStop = false;
-			// 
-			// pictureBox6
-			// 
-			this->pictureBox6->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox6.BackgroundImage")));
-			this->pictureBox6->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->pictureBox6->Location = System::Drawing::Point(-48, 635);
-			this->pictureBox6->Name = L"pictureBox6";
-			this->pictureBox6->Size = System::Drawing::Size(693, 500);
-			this->pictureBox6->TabIndex = 4;
-			this->pictureBox6->TabStop = false;
-			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(19, 32);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
+			this->AutoSize = true;
+			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->BackColor = System::Drawing::Color::Black;
-			this->ClientSize = System::Drawing::Size(1523, 1111);
+			this->ClientSize = System::Drawing::Size(1484, 1061);
 			this->Controls->Add(this->startpage);
 			this->Font = (gcnew System::Drawing::Font(L"Minisystem", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -1273,7 +1288,9 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->Margin = System::Windows::Forms::Padding(10, 7, 10, 7);
 			this->Name = L"MyForm";
-			this->Text = L"MyForm";
+			this->ShowIcon = false;
+			this->Text = L"GAME";
+			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->startpage->ResumeLayout(false);
 			this->startpage->PerformLayout();
@@ -1293,6 +1310,8 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->read_light->PerformLayout();
 			this->results->ResumeLayout(false);
 			this->results->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox5))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->EndInit();
 			this->leave->ResumeLayout(false);
 			this->leave->PerformLayout();
@@ -1318,38 +1337,12 @@ private: System::Windows::Forms::PictureBox^ pictureBox5;
 			this->info_page->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->mrrobot_ascii))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->exit_image))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox5))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 		//Stupid loadfin function doesnt work --------------------------------------------
-		void UpdateLoadingText()
-		{
-			String^ loadingText = L"Loading";
-			for (int i = 0; i < loadingText->Length; ++i)
-			{
-				loadingText += L".";
-			}
-			loading_text->Text = loadingText;
-		}
-	
-		void print_loading()
-		{
-			for (int i = 0; i < 3; ++i)
-			{
-				if (loading_text->InvokeRequired)
-				{
-					loading_text->Invoke(gcnew Action(this, &MyForm::UpdateLoadingText));
-				}
-				else
-				{
-					UpdateLoadingText();
-				}
 
-				std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-			}
-		}
 
 
 //Click functions-----------------------------------------------------------------------
@@ -1408,11 +1401,11 @@ private: System::Void enter_barrel_Click(System::Object^ sender, System::EventAr
 	std::string barrelInput = msclr::interop::marshal_as<std::string>(barrel_input->Text);
 	jaccard x;
 
-	if (x.calculateJaccardSimilarity(barrelInput, "light") > 33.0) {
+	if (x.calculateJaccardSimilarity(barrelInput, "light") > 33.0 || x.calculateJaccardSimilarity(barrelInput, "open") > 33.0) {
 		barrel_light->Show();
 		p1->update_score(-10);
 	}
-	else if (x.calculateJaccardSimilarity(barrelInput, "move") > 33.0) {
+	else if (x.calculateJaccardSimilarity(barrelInput, "move") > 33.0 || x.calculateJaccardSimilarity(barrelInput, "open") > 33.0) {
 
 		barrel_move->Show();
 		p1->update_score(5);
@@ -1456,7 +1449,7 @@ private: System::Void enter_2_Click(System::Object^ sender, System::EventArgs^ e
 		shout_hallway->Show();
 		p1->update_score(3);
 	}
-	else if (x.calculateJaccardSimilarity(barrelInput, "enter") > 33.0) {
+	else if (x.calculateJaccardSimilarity(barrelInput, "enter") > 33.0 || x.calculateJaccardSimilarity(barrelInput, "run") > 33.0) {
 
 		enter_hallway->Show();
 		p1->update_score(5);
